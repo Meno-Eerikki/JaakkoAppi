@@ -1,0 +1,17 @@
+<h1>Chat</h1>
+<form method="POST">
+    <input type="text" name="sender" />
+    <input type="text" name="message" />
+    <input type="submit" value="Submit!" />
+</form>
+
+<table>
+    <% messages.forEach((chat) => { %>
+        <tr>
+            <td>
+                <%= chat.sender %>: <%= chat.message %>
+            </td>
+
+        </tr>
+    <% }); %>
+</table>
