@@ -3,10 +3,8 @@ import { serve } from "https://deno.land/std@0.65.0/http/server.ts";
 import { renderFile } from 'https://raw.githubusercontent.com/syumai/dejs/master/mod.ts';
 import { Client } from "https://deno.land/x/postgres@v0.4.5/mod.ts"; 
 
-const client = new Client({
-});
 
-const server = serve({ port: 7777 });
+const DATABASE_URL = Deno.env.toObject().DATABASE_URL;const client = new Client(DATABASE_URL);let port = 7777;if (Deno.args.length > 0) {  const lastArgument = Deno.args[Deno.args.length - 1];  port = Number(lastArgument);}const server = serve({ port: port });
 
 const executeQuery = async(query, ...args) => {
     try {
